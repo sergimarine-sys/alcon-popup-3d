@@ -599,12 +599,7 @@ async function main(){
   const plate=new THREE.Mesh(new THREE.PlaneGeometry(0.52,0.10),new THREE.MeshStandardMaterial({map:tex(plateC),transparent:true,roughness:0.4}));
   plate.rotation.x=-Math.PI/2;plate.position.set(cX+0.05,TOP+0.0015,cZ+0.34);scene.add(plate);   // impreso en la encimera
   // v18: sin cúpulas, bandeja ni gel sobre el mostrador (petición de Sergi): solo ojo anatómico y lentilla gigante
-  // floor path
-  const path=[[-2.9,2.25],[-1.45,1.8],[-0.55,1.8],[0.45,1.65],[1.75,1.8],[2.85,2.25]];
-  const dash=std({color:'#AFC0DE',roughness:0.6});
-  for(let i=0;i<path.length-1;i++){const [x1,z1]=path[i],[x2,z2]=path[i+1];const len=Math.hypot(x2-x1,z2-z1),n=Math.floor(len/0.2);
-    for(let k=1;k<n;k++){const t=k/n;const d=new THREE.Mesh(new THREE.PlaneGeometry(0.1,0.025),dash);
-      d.rotation.x=-Math.PI/2;d.rotation.z=-Math.atan2(z2-z1,x2-x1);d.position.set(x1+(x2-x1)*t,BASE+0.002,z1+(z2-z1)*t);scene.add(d);}}
+  // sin camino discontinuo en el suelo (petición de Sergi)
   // ---------- views ----------
   const V={tres:[[6.2,2.7,7.4],[-0.1,1.3,0.3]],front:[[0,1.85,8.8],[0,1.45,0.2]],top:[[0.01,9.6,3.6],[0,0,0.45]],
            prisms:[[0.44,1.35,2.93],[-2.25,1.15,1.2]],prismsBack:[[-4.95,1.35,-0.02],[-2.25,1.15,1.2]],counter:[[0.5,1.6,3.35],[0.3,0.85,0.95]],ojo:[[-0.02,1.62,1.65],[-0.2,1.28,0.85]],vitrinas:[[1.0,1.75,0.75],[0.82,1.65,-0.9]],col:[[1.0,1.5,3.6],[2.5,1.3,1.45]],halo:[[-1.2,1.6,4.2],[0.15,2.9,0.3]]};
